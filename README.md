@@ -7,7 +7,6 @@ This is the backend for a **Task Management System** built with **Spring Boot**.
 ## Table of Contents
 - [Features](#features)
 - [Technologies](#technologies)
-- [Setup](#setup)
 - [API Endpoints](#api-endpoints)
 - [Exception Handling](#exception-handling)
 
