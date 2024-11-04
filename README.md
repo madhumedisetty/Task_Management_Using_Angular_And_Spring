@@ -1,6 +1,6 @@
 # Event_Management_Using_Angular_And_Spring
 
-# Task Management System Backend
+# Backend
 
 This is the backend for a **Task Management System** built with **Spring Boot**. It provides RESTful APIs for managing tasks, including features like creating, updating, deleting, searching, and filtering tasks by various attributes. This backend serves as the API layer and can be integrated with a frontend application.
 
