@@ -32,7 +32,9 @@ export class TaskService {
     return this.httpClient.delete<void>(`${this.baseUrl}/${id}`);
   }
 
-
+  getAllTasks(): Observable<Task[]> {
+    return this.httpClient.get<Task[]>(`${this.baseUrl}/tasks`);
+  }
     // Add a method to get tasks by category
     getTasksByCategory(category: string): Observable<Task[]> {
       return this.httpClient.get<Task[]>(`${this.baseUrl}/category?category=${category}`);
@@ -63,8 +65,7 @@ export class TaskService {
 
    // Define a method to search tasks by a search term
    searchTasksByTerm(searchTerm: string): Observable<Task[]> {
-    const url = `${this.baseUrl}/search?query=${searchTerm}`;
+    const url = `${this.baseUrl}/search?query=${encodeURIComponent(searchTerm)}`;
     return this.httpClient.get<Task[]>(url);
   }
-
 }

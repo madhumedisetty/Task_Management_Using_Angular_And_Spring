@@ -1,30 +1,46 @@
+import { Component, OnInit } from '@angular/core';
 import { TaskService } from './services/task.service';
-import { Component } from '@angular/core';
 import { Task } from './models/task';
-
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Task Management Application';
 
-  tasks: Task[] = []; // Define the tasks property
+  allTasks: Task[] = [];
+  filteredTasks: Task[] = [];
+  showSearchResults: boolean = false;
 
-  constructor(private taskService: TaskService) { // Inject the TaskService
+  constructor(private taskService: TaskService) {}
+
+  ngOnInit() {
+    this.loadAllTasks();
+  }
+
+  loadAllTasks() {
+    this.taskService.getTasks().subscribe(tasks => {
+      this.allTasks = tasks;
+      this.filteredTasks = tasks;
+    });
   }
 
   searchTasks(searchTerm: string) {
-    // Implement the logic to search for tasks with the given searchTerm.
-    // You can call your service to fetch filtered tasks here.
-
-    // For demonstration purposes, let's assume you have a task service with a method to search tasks.
-    // Replace 'yourTaskService' and 'searchTasksByTerm' with your actual service and method names.
-    this.taskService.searchTasksByTerm(searchTerm).subscribe((filteredTasks) => {
-      // Handle the filtered tasks here, e.g., update a tasks array.
-      this.tasks = filteredTasks;
-    });
+    if (!searchTerm.trim()) {
+      this.showSearchResults = false;
+      this.filteredTasks = [];
+    } else {
+      this.showSearchResults = true;
+      this.taskService.searchTasksByTerm(searchTerm).subscribe(
+        (searchResults) => {
+          this.filteredTasks = searchResults;
+        },
+        (error) => {
+          console.error('Error searching tasks:', error);
+        }
+      );
     }
+  }
 }
