@@ -1,5 +1,21 @@
 # Event_Management_Using_Angular_And_Spring
 
+## Technologies Used
+
+- **Frontend:** Angular
+- **Backend:** Spring Boot
+- **Database:** MySQL (or any preferred database)
+- **HTTP Client:** Angular's HttpClient module for API communication
+
+### Prerequisites
+
+- Node.js (v14 or later)
+- Angular CLI
+- Java JDK (v11 or later)
+- Maven
+- MySQL (or any preferred database)
+
+
 # Backend
 
 This is the backend for a **Task Management System** built with **Spring Boot**. It provides RESTful APIs for managing tasks, including features like creating, updating, deleting, searching, and filtering tasks by various attributes. This backend serves as the API layer and can be integrated with a frontend application.
@@ -22,11 +38,6 @@ This is the backend for a **Task Management System** built with **Spring Boot**.
 - **Mark Task as Completed**: Update the completion status of a task.
 - **Filter by Priority**: Fetch tasks based on priority.
 
-## Technologies
-
-- **Java 21**
-- **Spring Boot** - Backend Framework
-- **MySQL** - For DataBase
 
 **Access the API**
    - The API root URL will be `http://localhost:8080/api/v1/`.
@@ -91,11 +102,30 @@ This is the backend for a **Task Management System** built with **Spring Boot**.
 - **Get Tasks by Priority**
   - `GET /api/v1/tasks/priority?priority={priority}`
   - Returns tasks filtered by priority.
-
-
+    
 
 ## Exception Handling
 
 - **ResourceNotFoundException**
   - This exception is thrown when a requested task is not found in the database.
   - The API returns a `404 Not Found` status with a message indicating the issue.
+
+
+# Frontend
+
+A Task Management System built with Angular for the frontend and Spring Boot for the backend. This application allows users to manage tasks efficiently by creating, updating, deleting, and categorizing them.
+
+## Features
+
+- Create, Read, Update, and Delete tasks.
+- Filter tasks by category and priority.
+- Search for tasks by keywords.
+- Mark tasks as completed.
+
+![WhatsApp Image 2024-11-04 at 17 08 00_f55a4d5f](https://github.com/user-attachments/assets/ff0d57d1-f1be-4e36-81fe-a074d571dd03)
+
+![WhatsApp Image 2024-11-04 at 17 08 00_82c96192](https://github.com/user-attachments/assets/42de5d23-dac3-4323-b9c7-557dfc60ced6)
+
+![WhatsApp Image 2024-11-04 at 17 08 00_85f51427](https://github.com/user-attachments/assets/b6119f1b-6cf3-424c-bff9-5b6b157eb26f)
+
+![WhatsApp Image 2024-11-04 at 17 08 01_872334e9](https://github.com/user-attachments/assets/5f42e023-1b56-4924-92b2-c7cd6c4a1aa0)
