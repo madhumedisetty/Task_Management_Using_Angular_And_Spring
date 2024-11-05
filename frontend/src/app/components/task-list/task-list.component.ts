@@ -12,19 +12,9 @@ export class TaskListComponent implements OnInit{
 
  tasks : Task[]=[];
  selectedCategory: string = ''; // Selected category for filtering
- //selectedPriority: string = ''; // Initialize selectedPriority
  searchResults: any[] = [];
 
  constructor(private taskService: TaskService, private httpClient: HttpClient){}
-
-//  ngOnInit(): void {
-//    this.taskService.getTasks().subscribe(tasks => {
-//     this.tasks = tasks;
-
-//    });
-//  }
-
-
 
 ngOnInit(): void {
   this.getTasks();
@@ -51,18 +41,6 @@ filterTasks(): void {
   }
 }
 
-// filterTasksByPriority(): void {
-//   // Filter tasks based on the selected priority
-//   if (this.selectedPriority === '') {
-//     // If 'All' is selected, show all tasks
-//     this.getTasks();
-//   } else {
-//     // Filter tasks by priority
-//     this.taskService.getTasksByPriority(this.selectedPriority).subscribe((filteredTasks) => {
-//       this.tasks = filteredTasks;
-//     });
-//   }
-// }
 
 
 getPriorityClass(priority: string): string {
@@ -106,19 +84,6 @@ updatePriorityInTaskList(taskId: number, priority: string): void {
 updateSearchResults(results: any[]): void {
   this.searchResults = results;
 }
-
-// Modify your search method to update search results
-// searchTasks(searchTerm: string) {
-//   this.taskService.searchTasksByTerm(searchTerm).subscribe((filteredTasks) => {
-//     console.log('Filtered Tasks:', filteredTasks); // Add this line
-//     this.updateSearchResults(filteredTasks);
-//   },
-//   (error) => {
-//     console.error('Search Error:', error); // Log any errors
-//   }
-//   );
-// }
-
 
 searchTasks(searchTerm: string) {
   this.taskService.searchTasksByTerm(searchTerm).subscribe(

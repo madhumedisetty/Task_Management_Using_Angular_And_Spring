@@ -30,8 +30,6 @@
   background-color: #ffffff;
   transition: box-shadow 0.2s;
   box-shadow: 0 2px 4px rgba(1, 1, 2, 0.1);
-  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
-  /* box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1); */
 }
 
 /* Style the task title */
@@ -58,11 +56,7 @@
 
 /* Hover effect */
 .list-group-item:hover {
-  /* background-color: #0e3a49;
-  background: linear-gradient(135deg, #00c6ff, #2962ff);
-  transform: scale(1.02);
-  transition: background-color 0.2s, transform 0.2s; */
-  box-shadow: 0 0 20px rgba(139, 210, 249, 0.8); /* Add box-shadow effect on hover */
+  box-shadow: 0 0 20px rgba(139, 210, 249, 0.8); 
   transform: scale(1.02);
 }
 
@@ -92,7 +86,6 @@
 }
 
 .category{
-  /* background-color: rgb(241, 236, 236); */
   padding: 5px;
   margin-left: 78%;
   margin-right: 3%;
@@ -140,7 +133,6 @@ select:focus {
 
 /* High Priority */
 .high-priority {
-  /* background-color: #ff9999;  */
   color: #cc0000; /* Dark red text color */
   width: 30%;
   border-radius: 2px;
@@ -149,7 +141,6 @@ select:focus {
 
 /* Medium Priority */
 .medium-priority {
-  /* background-color: #ffec99;  */
   color: #cc6600; /* Dark orange text color */
   width: 30%;
   border-radius: 2px;
@@ -164,16 +155,6 @@ select:focus {
   border-radius: 2px;
   padding: 5px;
 }
-
-
-
-
-
-/* Apply decimal numbering to the unordered list */
-/* ul {
-  list-style-type: decimal;
-} */
-
 
 /* Styling for Completed Task List */
 .completed-task-list {
