@@ -20,6 +20,7 @@
 
   <!-- Include the search bar here -->
   <app-search-bar (searchEmitter)="searchTasks($event)"></app-search-bar>
+  
 </nav>
 
 <!-- hehe -->
@@ -56,6 +57,9 @@
     <!-- Main content area -->
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <!-- Page content goes here -->
+      <!-- Show search results only when showSearchResults is true -->
+      <app-task-list *ngIf="showSearchResults" [tasks]="filteredTasks"></app-task-list>
+      
       <div class="container" style="padding-top: 20px">
         <router-outlet></router-outlet>
       </div>

@@ -6,7 +6,7 @@ import { DeleteTaskComponent } from './components/delete-task/delete-task.compon
 import { TaskListComponent } from './components/task-list/task-list.component';
 
 
-const routes: Routes = [
+export const routes: Routes = [
 
   {path: 'create-task', component: CreateTaskComponent},
 

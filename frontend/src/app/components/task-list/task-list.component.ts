@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Task } from '../../models/task';
 import { TaskService } from '../../services/task.service';
 
@@ -10,7 +10,7 @@ import { TaskService } from '../../services/task.service';
 })
 export class TaskListComponent implements OnInit{
 
- tasks : Task[]=[];
+ @Input() tasks : Task[]=[];
  selectedCategory: string = ''; // Selected category for filtering
  searchResults: any[] = [];
 
@@ -81,21 +81,21 @@ updatePriorityInTaskList(taskId: number, priority: string): void {
 
 
 // Create a new method to update search results
-updateSearchResults(results: any[]): void {
-  this.searchResults = results;
-}
+// updateSearchResults(results: any[]): void {
+//   this.searchResults = results;
+// }
 
-searchTasks(searchTerm: string) {
-  this.taskService.searchTasksByTerm(searchTerm).subscribe(
-    (filteredTasks) => {
-      console.log('Filtered Tasks:', filteredTasks);
-      //this.searchResults = filteredTasks; // Populate searchResults
-      this.updateSearchResults(filteredTasks);
-      console.log('Search Results:', this.searchResults);
-    },
-    (error) => {
-      console.error('Search Error:', error);
-    }
-  );
-}
+// searchTasks(searchTerm: string) {
+//   this.taskService.searchTasksByTerm(searchTerm).subscribe(
+//     (filteredTasks) => {
+//       console.log('Filtered Tasks:', filteredTasks);
+//       //this.searchResults = filteredTasks; // Populate searchResults
+//       this.updateSearchResults(filteredTasks);
+//       console.log('Search Results:', this.searchResults);
+//     },
+//     (error) => {
+//       console.error('Search Error:', error);
+//     }
+//   );
+// }
 }
