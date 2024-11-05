@@ -1,13 +1,38 @@
-# Event_Management_Using_Angular_And_Spring
+# Task Management System
+
+A full-stack Task Management System built with Angular for the frontend and Spring Boot for the backend. This application allows users to efficiently manage tasks by creating, updating, deleting, and categorizing them.
+
+## Table of Contents
+
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Prerequisites](#prerequisites)
+- [Getting Started](#getting-started)
+  - [Backend Setup](#backend-setup)
+  - [Frontend Setup](#frontend-setup)
+- [API Endpoints](#api-endpoints)
+- [Frontend Components](#frontend-components)
+- [Exception Handling](#exception-handling)
+- [Screenshots](#screenshots)
+
+## Features
+
+- Create, Read, Update, and Delete tasks
+- Filter tasks by category and priority
+- Search for tasks by keywords
+- Mark tasks as completed
+- Responsive design for various screen sizes
 
 ## Technologies Used
 
-- **Frontend:** Angular
-- **Backend:** Spring Boot
-- **Database:** MySQL (or any preferred database)
+- **Frontend:** Angular 14+
+- **Backend:** Spring Boot 2.7+
+- **Database:** MySQL
 - **HTTP Client:** Angular's HttpClient module for API communication
+- **Build Tool:** Maven (Backend), npm (Frontend)
+- **Version Control:** Git
 
-### Prerequisites
+## Prerequisites
 
 - Node.js (v14 or later)
 - Angular CLI
@@ -15,117 +40,93 @@
 - Maven
 - MySQL (or any preferred database)
 
+## Getting Started
 
-# Backend
+### Backend Setup
 
-This is the backend for a **Task Management System** built with **Spring Boot**. It provides RESTful APIs for managing tasks, including features like creating, updating, deleting, searching, and filtering tasks by various attributes. This backend serves as the API layer and can be integrated with a frontend application.
+1. Clone the repository:
+   ```
+   git clone https://github.com/yourusername/task-management-system.git
+   ```
 
-## Table of Contents
-- [Features](#features)
-- [Technologies](#technologies)
-- [API Endpoints](#api-endpoints)
-- [Exception Handling](#exception-handling)
+2. Navigate to the backend directory:
+   ```
+   cd task-management-system/backend
+   ```
 
-## Features
+3. Configure the database connection in `src/main/resources/application.properties`.
 
-- **Create Task**: Add new tasks with attributes like title, description, due date, category, priority, and completion status.
-- **Update Task**: Modify task details.
-- **Delete Task**: Remove tasks by ID.
-- **Retrieve All Tasks**: Fetch all tasks.
-- **Retrieve Task by ID**: Get task details by ID.
-- **Search Tasks**: Search tasks by title.
-- **Filter by Category**: Fetch tasks based on category.
-- **Mark Task as Completed**: Update the completion status of a task.
-- **Filter by Priority**: Fetch tasks based on priority.
+4. Build and run the Spring Boot application:
+   ```
+   mvn spring-boot:run
+   ```
 
+The backend server will start on `http://localhost:8080`.
 
-**Access the API**
-   - The API root URL will be `http://localhost:8080/api/v1/`.
+### Frontend Setup
+
+1. Navigate to the frontend directory:
+   ```
+   cd task-management-system/frontend
+   ```
+
+2. Install dependencies:
+   ```
+   npm install
+   ```
+
+3. Start the Angular development server:
+   ```
+   ng serve
+   ```
+
+The frontend application will be available at `http://localhost:4200`.
 
 ## API Endpoints
 
 ### Task Management
 
-- **Get All Tasks**
-  - `GET /api/v1/tasks`
-  - Returns a list of all tasks. 
-    ![image](https://github.com/user-attachments/assets/25d790d7-ea4b-4301-bda2-63a752494ec6)
+- **Get All Tasks:** `GET /api/v1/tasks`
+- **Get Task by ID:** `GET /api/v1/tasks/{id}`
+- **Create a Task:** `POST /api/v1/tasks`
+- **Update a Task:** `PUT /api/v1/tasks/{id}`
+- **Delete a Task:** `DELETE /api/v1/tasks/{id}`
+- **Get Tasks by Category:** `GET /api/v1/tasks/category?category={category}`
+- **Mark Task as Completed:** `PUT /api/v1/tasks/{id}/completed`
+- **Search Tasks:** `GET /api/v1/tasks/search?query={query}`
+- **Get Tasks by Priority:** `GET /api/v1/tasks/priority?priority={priority}`
 
+## Frontend Components
 
-- **Get Task by ID**
-  - `GET /api/v1/tasks/{id}`
-  - Returns task details by ID.
- 
-    ![image](https://github.com/user-attachments/assets/05ab3988-9d47-4e74-aef8-35ac2525b68c)
-
-
-- **Create a Task**
-  - `POST /api/v1/tasks`
-  - Adds a new task.
-  - **Body**: JSON representation of a task (title, description, due date, etc.).
- 
-    ![image](https://github.com/user-attachments/assets/a0d44e59-0714-4dc7-b511-f615f5642071)
-
-
-- **Update a Task**
-  - `PUT /api/v1/tasks/{id}`
-  - Updates a task’s details.
-  - **Body**: JSON representation of task details to update.
- 
-    ![image](https://github.com/user-attachments/assets/4b464634-d7e4-4fd3-86f3-51ead7350cc2)
-
-
-- **Delete a Task**
-  - `DELETE /api/v1/tasks/{id}`
-  - Deletes a task by ID.
- 
-    ![image](https://github.com/user-attachments/assets/5d73c8dc-c0e3-4d39-8ab3-5502cdff056a)
-
-    ![image](https://github.com/user-attachments/assets/e5abe189-9214-4668-9ce3-84e2dbdc635a)
-
-
-
-### Additional Features
-
-- **Get Tasks by Category**
-  - `GET /api/v1/tasks/category?category={category}`
-  - Returns tasks filtered by category.
-
-- **Mark Task as Completed**
-  - `PUT /api/v1/tasks/{id}/completed`
-  - Marks a task as completed by ID.
-
-- **Search Tasks**
-  - `GET /api/v1/tasks/search?query={query}`
-  - Returns tasks containing the query string in the title.
-
-- **Get Tasks by Priority**
-  - `GET /api/v1/tasks/priority?priority={priority}`
-  - Returns tasks filtered by priority.
-    
+- **TaskListComponent:** Displays the list of tasks and handles filtering
+- **CreateTaskComponent:** Form for creating new tasks
+- **UpdateTaskComponent:** Form for updating existing tasks
+- **SearchBarComponent:** Handles task searching functionality
+- **TaskService:** Manages HTTP requests to the backend API
 
 ## Exception Handling
 
-- **ResourceNotFoundException**
-  - This exception is thrown when a requested task is not found in the database.
-  - The API returns a `404 Not Found` status with a message indicating the issue.
+- **ResourceNotFoundException:** Thrown when a requested task is not found in the database
+- The API returns a `404 Not Found` status with a message indicating the issue
 
+## Screenshots
 
-# Frontend
+![Screenshot 2024-11-04 170655](https://github.com/user-attachments/assets/7f2d56cd-b120-486d-b50c-835937dedc62)
 
-A Task Management System built with Angular for the frontend and Spring Boot for the backend. This application allows users to manage tasks efficiently by creating, updating, deleting, and categorizing them.
+*Task List View*
 
-## Features
+![Screenshot 2024-11-04 170704](https://github.com/user-attachments/assets/627838f4-14b8-43ea-9fcb-97d95835ee9a)
 
-- Create, Read, Update, and Delete tasks.
-- Filter tasks by category and priority.
-- Search for tasks by keywords.
-- Mark tasks as completed.
+*Create Task Form*
 
-![WhatsApp Image 2024-11-04 at 17 08 00_f55a4d5f](https://github.com/user-attachments/assets/ff0d57d1-f1be-4e36-81fe-a074d571dd03)
+![Screenshot 2024-11-04 170715](https://github.com/user-attachments/assets/d81fd214-d082-4d8b-9c61-505437f7c577)
 
-![WhatsApp Image 2024-11-04 at 17 08 00_82c96192](https://github.com/user-attachments/assets/42de5d23-dac3-4323-b9c7-557dfc60ced6)
+*Update Task Form*
 
-![WhatsApp Image 2024-11-04 at 17 08 00_85f51427](https://github.com/user-attachments/assets/b6119f1b-6cf3-424c-bff9-5b6b157eb26f)
+![Screenshot 2024-11-04 170728](https://github.com/user-attachments/assets/f57ed36e-4aca-4133-9cab-9903b7854bd3)
 
-![WhatsApp Image 2024-11-04 at 17 08 01_872334e9](https://github.com/user-attachments/assets/5f42e023-1b56-4924-92b2-c7cd6c4a1aa0)
+*Delete*
+
+![Screenshot 2024-11-05 171942](https://github.com/user-attachments/assets/af6c8f00-33e1-45d3-ab5b-782d5d6fa7c8)
+
+*Search functionality*
