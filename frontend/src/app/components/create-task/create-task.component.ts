@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-task.component.css']
 })
 export class CreateTaskComponent implements OnInit{
-//task: Task = new Task();
 task: Task = {
     id: 0,
     title: '',
@@ -19,7 +18,6 @@ task: Task = {
     category: '',
     priority:''
   }
-//task: Task = new Task(1, 'Sample Task', 'Sample Description', new Date());
 
   constructor(private taskService: TaskService, private router: Router){
 

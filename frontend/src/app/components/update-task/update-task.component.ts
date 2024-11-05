@@ -11,7 +11,6 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./update-task.component.css']
 })
 export class UpdateTaskComponent implements OnInit{
-
   
   id:number=0;
   task: Task = {
@@ -78,7 +77,6 @@ export class UpdateTaskComponent implements OnInit{
     }
   }
 
-
   // In your component, handle form submission to update the task
 updateTaskCompletion(task: Task): void {
   this.taskService.updateTask(this.id,this.task).subscribe(
@@ -90,7 +88,6 @@ updateTaskCompletion(task: Task): void {
     }
   );
 }
-
 
 updatePriorityInTaskList(taskId: number, priority: string): void {
   // Assuming you have a service to get the tasks list, you can update the priority there
