@@ -11,9 +11,8 @@ import { UpdateTaskComponent } from './components/update-task/update-task.compon
 import { DeleteTaskComponent } from './components/delete-task/delete-task.component';
 import { DatePipe } from '@angular/common';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
-
-
-
+import { NgChartsModule } from 'ng2-charts';
+import { TaskCompletionChartComponent } from './task-completion-chart/task-completion-chart.component';
 
 @NgModule({
   declarations: [
@@ -23,14 +22,14 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     UpdateTaskComponent,
     DeleteTaskComponent,
     SearchBarComponent,
-
+    TaskCompletionChartComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
-
+    FormsModule,
+    NgChartsModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
