@@ -46,7 +46,7 @@ A full-stack Task Management System built with Angular for the frontend and Spri
 
 1. Clone the repository:
    ```
-   git clone https://github.com/madhumedisetty/task-management-system.git
+   git clone https://github.com/madhumedisetty/Task_Management_Using_Angular_And_Spring.git
    ```
 
 2. Navigate to the backend directory:
