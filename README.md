@@ -58,6 +58,7 @@ A full-stack Task Management System built with Angular for the frontend and Spri
 
 4. Build and run the Spring Boot application:
    ```
+   mvn clean install
    mvn spring-boot:run
    ```
 
