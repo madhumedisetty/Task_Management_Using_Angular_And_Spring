@@ -131,3 +131,13 @@ The frontend application will be available at `http://localhost:4200`.
 ![Screenshot 2024-11-05 171942](https://github.com/user-attachments/assets/af6c8f00-33e1-45d3-ab5b-782d5d6fa7c8)
 
 *Search functionality*
+
+
+**Task Analytics Chart**
+
+A pie chart that displays the overview of Task Completion 
+
+![image](https://github.com/user-attachments/assets/5eb70811-f425-4044-9c46-a4e02892a4aa)
+
+![image](https://github.com/user-attachments/assets/8964d6c1-6c31-4b2a-874b-79fee3cb3e81)
+
