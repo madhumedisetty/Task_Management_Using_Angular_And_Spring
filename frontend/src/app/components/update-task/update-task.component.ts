@@ -20,7 +20,7 @@ export class UpdateTaskComponent implements OnInit{
     dueDate: '',
     completed:false,
     category: '',
-    priority:''
+    priority:'Medium'
   }
 
   constructor(private taskService: TaskService,private route: ActivatedRoute, private router: Router, private datePipe: DatePipe){}
@@ -89,9 +89,9 @@ updateTaskCompletion(task: Task): void {
   );
 }
 
-updatePriorityInTaskList(taskId: number, priority: string): void {
-  // Assuming you have a service to get the tasks list, you can update the priority there
+updatePriorityInTaskList(taskId: number, priority: 'High' | 'Medium' | 'Low'): void {
   this.taskService.updateTaskPriority(taskId, priority);
 }
+
 
 }
