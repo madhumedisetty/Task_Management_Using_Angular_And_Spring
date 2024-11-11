@@ -89,11 +89,19 @@ public class TaskController {
 	}
 	
 	//category 
-	@GetMapping("/tasks/category")
-	public List<Task> getTasksByCategory(@RequestParam String category) {
-	    return taskRepo.findByCategory(category);
-	    
-	}
+	@GetMapping("/tasks/filter")
+public List<Task> getFilteredTasks(@RequestParam(required = false) String category, 
+                                   @RequestParam(required = false) String priority) {
+    if (category != null && priority != null) {
+        return taskRepo.findByCategoryAndPriority(category, priority);
+    } else if (category != null) {
+        return taskRepo.findByCategory(category);
+    } else if (priority != null) {
+        return taskRepo.findByPriority(priority);
+    } else {
+        return taskRepo.findAll();
+    }
+}
 	
 	// Mark a task as completed
 	@PutMapping("/tasks/{id}/completed")

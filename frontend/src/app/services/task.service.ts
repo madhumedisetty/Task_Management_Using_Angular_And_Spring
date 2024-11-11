@@ -35,17 +35,16 @@ export class TaskService {
   getAllTasks(): Observable<Task[]> {
     return this.httpClient.get<Task[]>(`${this.baseUrl}/tasks`);
   }
-    // Add a method to get tasks by category
-    getTasksByCategory(category: string): Observable<Task[]> {
-      return this.httpClient.get<Task[]>(`${this.baseUrl}/category?category=${category}`);
+  getFilteredTasks(category: string, priority: string): Observable<Task[]> {
+    let params = new HttpParams();
+    if (category) {
+      params = params.set('category', category);
     }
-
-
-    getTasksByPriority(priority: string): Observable<Task[]> {
-      const url = `${this.baseUrl}/tasks?priority=${priority}`;
-      return this.httpClient.get<Task[]>(url);
+    if (priority) {
+      params = params.set('priority', priority);
     }
-
+    return this.httpClient.get<Task[]>(`${this.baseUrl}/filter`, { params });
+  }
 
   updateTaskCompletion(id: number, completed: boolean): Observable<Task> {
     const url = `${this.baseUrl}/${id}/completed`;

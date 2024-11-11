@@ -13,6 +13,7 @@ export class TaskListComponent implements OnInit{
  @Input() tasks : Task[]=[];
  selectedCategory: string = ''; // Selected category for filtering
  searchResults: any[] = [];
+ selectedPriority: string = '';
 
  constructor(private taskService: TaskService, private httpClient: HttpClient){}
 
@@ -29,19 +30,14 @@ getTasks(): void {
 }
 
 filterTasks(): void {
-  // Filter tasks based on the selected category
-  if (this.selectedCategory === '') {
-    // If 'All' is selected, show all tasks
+  if (this.selectedCategory === '' && this.selectedPriority === '') {
     this.getTasks();
   } else {
-    // Filter tasks by category
-    this.taskService.getTasksByCategory(this.selectedCategory).subscribe((filteredTasks) => {
+    this.taskService.getFilteredTasks(this.selectedCategory, this.selectedPriority).subscribe((filteredTasks) => {
       this.tasks = filteredTasks;
     });
   }
 }
-
-
 
 getPriorityClass(priority: string): string {
   switch (priority) {
