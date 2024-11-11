@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, Input } from '@angular/core';
+// import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Task } from '../../models/task';
 import { TaskService } from '../../services/task.service';
 
@@ -11,12 +11,17 @@ import { TaskService } from '../../services/task.service';
 export class TaskListComponent implements OnInit{
 
  @Input() tasks : Task[]=[];
- selectedCategory: string = ''; // Selected category for filtering
+ @Input() selectedCategory: string = ''; // Define selectedCategory as an input property
+
+ @Output() tasksUpdated = new EventEmitter<Task[]>();
+ @Output() categoryChanged: EventEmitter<string> = new EventEmitter<string>();
+ @Output() tasksFiltered = new EventEmitter<Task[]>();
+//  selectedCategory: string = ''; // Selected category for filtering
  selectedPriority: string = '';
 
  searchResults: any[] = [];
 
- constructor(private taskService: TaskService, private httpClient: HttpClient){}
+ constructor(private taskService: TaskService){}
 
 ngOnInit(): void {
   this.getTasks();
@@ -26,10 +31,11 @@ getTasks(): void {
   this.taskService.getTasks().subscribe((tasks) => {
     this.tasks = tasks;
     this.sortTasksByDueDate();
-
+    console.log('All tasks loaded:', this.tasks); // Debugging log
+    this.tasksUpdated.emit(this.tasks);  // Emit updated task list
   });
-
 }
+
 sortTasksByDueDate(): void {
   this.tasks.sort((a, b) => {
     // If dueDate is missing, assign a large default value to place it at the end
@@ -39,16 +45,26 @@ sortTasksByDueDate(): void {
     return dateA - dateB;
   });
 }
-
 filterTasks(): void {
+  console.log('Filtering tasks with category:', this.selectedCategory, 'and priority:', this.selectedPriority);
   if (this.selectedCategory === '' && this.selectedPriority === '') {
     this.getTasks();
   } else {
     this.taskService.getFilteredTasks(this.selectedCategory, this.selectedPriority).subscribe((filteredTasks) => {
       this.tasks = filteredTasks;
+      console.log('Filtered tasks:', this.tasks);
+      this.tasksUpdated.emit(this.tasks);
+      this.tasksFiltered.emit(this.tasks); // Emit filtered tasks
     });
   }
 }
+
+onCategoryChange(newCategory: string): void {
+  this.selectedCategory = newCategory;
+  this.categoryChanged.emit(this.selectedCategory);
+  this.filterTasks(); // Call filterTasks when category changes
+}
+
 
 
 updateCompletionStatus(task: Task): void {
