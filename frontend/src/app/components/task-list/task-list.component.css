@@ -94,40 +94,56 @@
   color: #135d73;
   font-weight: bold;
 }
-/* CSS for Category Filter */
-#categoryFilter {
+
+
+/* filtering*/
+.filters {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px; /* Space between the dropdowns */
+  margin-right: 3%;
+}
+
+.category,
+.priority {
+  padding: 5px;
+}
+
+.category label,
+.priority label {
+  color: #135d73;
+  font-weight: bold;
+}
+
+/* Apply common styles for both dropdowns */
+.category select,
+.priority select {
   border: 1px solid #eae7e7;
   padding: 5px;
   font-size: 12px;
   border-radius: 5px;
   width: 130px;
-
-}
-/* Style the select dropdown */
-.category select {
-  padding: 20px;
-  border: 1px solid #fdfafa;
-  border-radius: 5px;
   background-color: #eff4f5;
-  font-size: 16px;
   cursor: pointer;
   outline: none;
 }
 
-/* Style the select dropdown options */
-select option {
+/* Styling for dropdown options */
+.category select option,
+.priority select option {
   background-color: #fff;
   color: #1e135c;
   font-size: 16px;
 }
 
-/* Style the select dropdown on hover and focus */
-select:hover,
-select:focus {
+/* Style on hover and focus for dropdowns */
+.category select:hover,
+.category select:focus,
+.priority select:hover,
+.priority select:focus {
   border: 1px solid #73f17b;
   box-shadow: 0 0 5px rgba(53, 53, 54, 0.5);
 }
-
 
 
 

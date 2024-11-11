@@ -1,11 +1,23 @@
-<div class="category">
-  <label for="categoryFilter">Category:</label>
-  <select id="categoryFilter" [(ngModel)]="selectedCategory" (change)="filterTasks()">
-    <option value="">All</option>
-    <option value="Personal">Personal</option>
-    <option value="Work">Work</option>
-    <option value="Shopping">Shopping</option>
-  </select>
+<div class="filters">
+  <div class="category">
+    <label for="categoryFilter">Category:</label>
+    <select id="categoryFilter" [(ngModel)]="selectedCategory" (change)="filterTasks()">
+      <option value="">All</option>
+      <option value="Personal">Personal</option>
+      <option value="Work">Work</option>
+      <option value="Shopping">Shopping</option>
+    </select>
+  </div>
+  
+  <div class="priority">
+    <label for="priorityFilter">Priority:</label>
+    <select id="priorityFilter" [(ngModel)]="selectedPriority" (change)="filterTasks()">
+      <option value="">All</option>
+      <option value="High">High</option>
+      <option value="Medium">Medium</option>
+      <option value="Low">Low</option>
+    </select>
+  </div>
 </div>
 
 <!-- Add this section to display search results -->
