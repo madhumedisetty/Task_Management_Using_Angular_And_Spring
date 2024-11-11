@@ -1,143 +1,141 @@
-# Task Management System
+# Task Management Application
 
-A full-stack Task Management System built with Angular for the frontend and Spring Boot for the backend. This application allows users to efficiently manage tasks by creating, updating, deleting, and categorizing them.
-
-## Table of Contents
-
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Prerequisites](#prerequisites)
-- [Getting Started](#getting-started)
-  - [Backend Setup](#backend-setup)
-  - [Frontend Setup](#frontend-setup)
-- [API Endpoints](#api-endpoints)
-- [Frontend Components](#frontend-components)
-- [Exception Handling](#exception-handling)
-- [Screenshots](#screenshots)
+This is a Task Management Application that allows users to manage their tasks with features like filtering by category and priority, updating completion status, and sorting tasks by due date.
 
 ## Features
 
-- Create, Read, Update, and Delete tasks
-- Filter tasks by category and priority
-- Search for tasks by keywords
-- Mark tasks as completed
-- Responsive design for various screen sizes
+- **Task Creation**: Add tasks with titles, descriptions, categories, priorities, due dates, and completion statuses.
+- **Task List**: View a list of tasks with detailed information (title, description, due date, priority).
+- **Filter Tasks**: Filter tasks by category (Personal, Work, Shopping) and priority (High, Medium, Low).
+- **Sorting Tasks**: Sort tasks based on priority (High, Medium, Low) or due date (earliest to latest).
+- **Update Tasks**: Edit task details, including title, description, due date, category, and priority.
+- **Mark Completion**: Mark tasks as completed with a checkbox. Completion status is updated in real-time.
+- **Delete Tasks**: Delete tasks from the list.
 
-## Technologies Used
+---
 
-- **Frontend:** Angular 14+
-- **Backend:** Spring Boot 2.7+
-- **Database:** MySQL
-- **HTTP Client:** Angular's HttpClient module for API communication
-- **Build Tool:** Maven (Backend), npm (Frontend)
-- **Version Control:** Git
+## Project Structure
+
+### Frontend (Angular)
+
+- **`task-list.component.ts`**: Component to list tasks with functionality to filter, sort, and update completion status.
+- **`task.service.ts`**: Service to manage API calls related to tasks (fetching, updating, creating, deleting tasks).
+- **`update-task.component.ts`**: Component to update task details.
+- **`task.model.ts`**: TypeScript model for Task objects.
+- **`app.module.ts`**: Main module that imports necessary Angular modules and sets up routing.
+- **`task-list.component.html`**: HTML template for the task list view, including filtering, sorting, and task management functionality.
+- **`task-list.component.css`**: Styles for the task list.
+
+### Backend (Express)
+
+- **`server.js`**: Main server file that handles routing, API calls, and connects to the database.
+- **`models/task.js`**: Task model for MongoDB (if using MongoDB) or your chosen database.
+- **`routes/taskRoutes.js`**: API routes for tasks (GET, POST, PUT, DELETE).
+
+---
 
 ## Prerequisites
 
-- Node.js (v14 or later)
-- Angular CLI
-- Java JDK (v11 or later)
-- Maven
-- MySQL (or any preferred database)
+Make sure you have the following installed:
 
-## Getting Started
+- Node.js (for both frontend and backend)
+- Angular CLI (for frontend)
+- A database (MongoDB, MySQL, etc.)
+
+---
+
+## Running the Project
 
 ### Backend Setup
 
-1. Clone the repository:
-   ```
-   git clone https://github.com/madhumedisetty/Task_Management_Using_Angular_And_Spring.git
-   ```
+1. Clone the backend repository:
 
-2. Navigate to the backend directory:
-   ```
-   cd task-management-system/backend
-   ```
-
-3. Configure the database connection in `src/main/resources/application.properties`.
-
-4. Build and run the Spring Boot application:
-   ```
-   mvn clean install
-   mvn spring-boot:run
-   ```
-
-The backend server will start on `http://localhost:8080`.
-
-### Frontend Setup
-
-1. Navigate to the frontend directory:
-   ```
-   cd task-management-system/frontend
+   ```bash
+   git clone https://github.com/your-repo/backend.git
+   cd backend
    ```
 
 2. Install dependencies:
-   ```
+
+   ```bash
    npm install
    ```
 
-3. Start the Angular development server:
+3. Configure your database connection in the `server.js` 
+
+4. Start the backend server:
+
+   ```bash
+   npm start
    ```
+
+   The backend should now be running on `http://localhost:8080` (or your configured port).
+
+---
+
+### Frontend Setup
+
+1. Clone the frontend repository:
+
+   ```bash
+   git clone https://github.com/your-repo/frontend.git
+   cd frontend
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Configure API URL (the backend server URL) in the `task.service.ts` file.
+
+4. Start the frontend server:
+
+   ```bash
    ng serve
    ```
 
-The frontend application will be available at `http://localhost:4200`.
+   The frontend should now be running on `http://localhost:4200`.
 
-## API Endpoints
+---
 
-### Task Management
+## Testing
 
-- **Get All Tasks:** `GET /api/v1/tasks`
-- **Get Task by ID:** `GET /api/v1/tasks/{id}`
-- **Create a Task:** `POST /api/v1/tasks`
-- **Update a Task:** `PUT /api/v1/tasks/{id}`
-- **Delete a Task:** `DELETE /api/v1/tasks/{id}`
-- **Get Tasks by Category:** `GET /api/v1/tasks/category?category={category}`
-- **Mark Task as Completed:** `PUT /api/v1/tasks/{id}/completed`
-- **Search Tasks:** `GET /api/v1/tasks/search?query={query}`
-- **Get Tasks by Priority:** `GET /api/v1/tasks/priority?priority={priority}`
+You can test the API using Postman or any other API client.
 
-## Frontend Components
+### API Endpoints:
 
-- **TaskListComponent:** Displays the list of tasks and handles filtering
-- **CreateTaskComponent:** Form for creating new tasks
-- **UpdateTaskComponent:** Form for updating existing tasks
-- **SearchBarComponent:** Handles task searching functionality
-- **TaskService:** Manages HTTP requests to the backend API
+- **GET `/tasks`**: Retrieve a list of all tasks.
+- **GET `/tasks/:id`**: Retrieve a single task by its ID.
+- **POST `/tasks`**: Create a new task.
+- **PUT `/tasks/:id`**: Update an existing task by ID.
+- **DELETE `/tasks/:id`**: Delete a task by ID.
 
-## Exception Handling
-
-- **ResourceNotFoundException:** Thrown when a requested task is not found in the database
-- The API returns a `404 Not Found` status with a message indicating the issue
+---
 
 ## Screenshots
 
-![Screenshot 2024-11-04 170655](https://github.com/user-attachments/assets/7f2d56cd-b120-486d-b50c-835937dedc62)
+_Add screenshots of your project here to showcase its user interface._
 
-*Task List View*
+1. **Task List View**:
+   ![Screenshot 2024-11-11 193646](https://github.com/user-attachments/assets/fc1e02ae-a688-41be-83f8-44d22e282386)
 
-![Screenshot 2024-11-04 170704](https://github.com/user-attachments/assets/627838f4-14b8-43ea-9fcb-97d95835ee9a)
+2. **Add Task**:
+   ![Screenshot 2024-11-11 193724](https://github.com/user-attachments/assets/5ff08626-b151-40b0-99b2-7618d6c31dce)
+   
+3. **Update Task Form**:
+   ![Screenshot 2024-11-11 193736](https://github.com/user-attachments/assets/7e9e43b9-f324-47e0-9cc1-53de620aca14)
 
-*Create Task Form*
+4. **Delete Task**:
+   ![Screenshot 2024-11-11 193745](https://github.com/user-attachments/assets/ce6b0e1c-02a5-44f6-8889-fe5be5d0f155)
 
-![Screenshot 2024-11-04 170715](https://github.com/user-attachments/assets/d81fd214-d082-4d8b-9c61-505437f7c577)
+5. **Searching**:
+    ![Screenshot 2024-11-11 193702](https://github.com/user-attachments/assets/068cf87e-7275-4566-829b-c631435694b5)
 
-*Update Task Form*
+6. **Filtering**:
+   ![Screenshot 2024-11-11 193803](https://github.com/user-attachments/assets/4dac4e73-e31b-42b9-ab07-1c0a95e4ad0b)
 
-![Screenshot 2024-11-04 170728](https://github.com/user-attachments/assets/f57ed36e-4aca-4133-9cab-9903b7854bd3)
-
-*Delete*
-
-![Screenshot 2024-11-05 171942](https://github.com/user-attachments/assets/af6c8f00-33e1-45d3-ab5b-782d5d6fa7c8)
-
-*Search functionality*
-
-
-**Task Analytics Chart**
-
-A pie chart that displays the overview of Task Completion 
-
-![image](https://github.com/user-attachments/assets/5eb70811-f425-4044-9c46-a4e02892a4aa)
-
-![image](https://github.com/user-attachments/assets/8964d6c1-6c31-4b2a-874b-79fee3cb3e81)
+7. **Task Analysis**:
+   ![Screenshot 2024-11-11 193818](https://github.com/user-attachments/assets/cdf5c23b-557e-412e-825a-d4abb7473496)
 
