@@ -50,18 +50,6 @@ filterTasks(): void {
   }
 }
 
-// getPriorityClass(priority: string): string {
-//   switch (priority) {
-//     case 'High':
-//       return 'high-priority';
-//     case 'Medium':
-//       return 'medium-priority';
-//     case 'Low':
-//       return 'low-priority';
-//     default:
-//       return ''; // Handle other cases or no priority
-//   }
-// }
 
 updateCompletionStatus(task: Task): void {
   // Send an HTTP request to update the completion status on the server.
