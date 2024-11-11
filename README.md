@@ -11,26 +11,7 @@ This is a Task Management Application that allows users to manage their tasks wi
 - **Update Tasks**: Edit task details, including title, description, due date, category, and priority.
 - **Mark Completion**: Mark tasks as completed with a checkbox. Completion status is updated in real-time.
 - **Delete Tasks**: Delete tasks from the list.
-
----
-
-## Project Structure
-
-### Frontend (Angular)
-
-- **`task-list.component.ts`**: Component to list tasks with functionality to filter, sort, and update completion status.
-- **`task.service.ts`**: Service to manage API calls related to tasks (fetching, updating, creating, deleting tasks).
-- **`update-task.component.ts`**: Component to update task details.
-- **`task.model.ts`**: TypeScript model for Task objects.
-- **`app.module.ts`**: Main module that imports necessary Angular modules and sets up routing.
-- **`task-list.component.html`**: HTML template for the task list view, including filtering, sorting, and task management functionality.
-- **`task-list.component.css`**: Styles for the task list.
-
-### Backend (Express)
-
-- **`server.js`**: Main server file that handles routing, API calls, and connects to the database.
-- **`models/task.js`**: Task model for MongoDB (if using MongoDB) or your chosen database.
-- **`routes/taskRoutes.js`**: API routes for tasks (GET, POST, PUT, DELETE).
+- **Task Analysis**: View a Pie Chart showing the percentage of tasks that are completed versus the ones that are still pending.
 
 ---
 
