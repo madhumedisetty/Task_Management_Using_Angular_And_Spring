@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
   filteredTasks: Task[] = [];
   showSearchResults: boolean = false;
   showPieChart: boolean = false;
+  selectedCategory: string = '';
 
   constructor(private taskService: TaskService, private router: Router, private route: ActivatedRoute) {}
 
@@ -50,8 +51,26 @@ export class AppComponent implements OnInit {
   checkIfHomepage() {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
+        console.log('Current route:', this.router.url); // Debugging log
         this.showPieChart = this.router.url === '/tasks';
+        console.log('showPieChart:', this.showPieChart); // Debugging log
       }
     });
   }
+
+  updateCategory(newCategory: string): void {
+    console.log('Category changed in AppComponent:', newCategory);
+    this.selectedCategory = newCategory;
+    this.filterTasksByCategory(newCategory);
+  }
+  
+  filterTasksByCategory(category: string): void {
+    if (category === '') {
+      this.filteredTasks = this.allTasks;
+    } else {
+      this.filteredTasks = this.allTasks.filter(task => task.category === category);
+    }
+    console.log('Filtered tasks by category:', this.filteredTasks);
+  }  
+
 }
