@@ -1,0 +1,68 @@
+/* General layout */
+.container-fluid {
+    padding: 0;
+  }
+  
+  .navbar {
+    background-color: #2b2d42;
+    padding: 10px 20px;
+    color: #ffffff;
+  }
+  
+  .navbar-brand,
+  #navbar-title,
+  #navbar-tit {
+    color: #ffffff;
+  }
+  
+  .navbar .navIn {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Sidebar styling */
+  .sidebar {
+    background-color: #2b2d42;
+    padding-top: 20px;
+    min-height: 100vh;
+  }
+  
+  .sidebar .nav-link {
+    color: #8d99ae;
+  }
+  
+  .sidebar .nav-link.active,
+  .sidebar .nav-link:hover {
+    color: #ffffff;
+    background-color: #434a59;
+  }
+  
+  /* Main content area */
+  .main-content {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  
+  /* Pie chart section */
+  .chart-section {
+    text-align: center;
+    margin-top: 40px; /* Add space between chart section and content above */
+    margin-bottom: 20px;
+  }
+  
+  .chart-section h2 {
+    color: #2b2d42;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  
+  /* Responsive canvas styling for chart */
+  .chart-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 15px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  

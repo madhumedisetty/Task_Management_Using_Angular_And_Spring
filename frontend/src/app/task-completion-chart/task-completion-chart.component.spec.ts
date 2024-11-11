@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TaskCompletionChartComponent } from './TaskCompletionChartComponent';
+import { TaskCompletionChartComponent } from './task-completion-chart.component';
 
 describe('TaskCompletionChartComponent', () => {
   let component: TaskCompletionChartComponent;

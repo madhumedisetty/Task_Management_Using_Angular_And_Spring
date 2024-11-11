@@ -79,23 +79,4 @@ updatePriorityInTaskList(taskId: number, priority: string): void {
   }
 }
 
-
-// Create a new method to update search results
-// updateSearchResults(results: any[]): void {
-//   this.searchResults = results;
-// }
-
-// searchTasks(searchTerm: string) {
-//   this.taskService.searchTasksByTerm(searchTerm).subscribe(
-//     (filteredTasks) => {
-//       console.log('Filtered Tasks:', filteredTasks);
-//       //this.searchResults = filteredTasks; // Populate searchResults
-//       this.updateSearchResults(filteredTasks);
-//       console.log('Search Results:', this.searchResults);
-//     },
-//     (error) => {
-//       console.error('Search Error:', error);
-//     }
-//   );
-// }
 }

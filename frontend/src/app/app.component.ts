@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { TaskService } from './services/task.service';
 import { Task } from './models/task';
 
@@ -13,11 +14,13 @@ export class AppComponent implements OnInit {
   allTasks: Task[] = [];
   filteredTasks: Task[] = [];
   showSearchResults: boolean = false;
+  showPieChart: boolean = false;
 
-  constructor(private taskService: TaskService) {}
+  constructor(private taskService: TaskService, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.loadAllTasks();
+    this.checkIfHomepage();
   }
 
   loadAllTasks() {
@@ -42,5 +45,13 @@ export class AppComponent implements OnInit {
         }
       );
     }
+  }
+
+  checkIfHomepage() {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.showPieChart = this.router.url === '/tasks';
+      }
+    });
   }
 }

@@ -15,7 +15,13 @@ export class TaskCompletionChartComponent implements OnInit {
     responsive: true,
     plugins: {
       legend: {
-        position: 'top'
+        position: 'top',
+        labels: {
+          color: '#2b2d42', // Text color to match the project
+          font: {
+            size: 14,
+          },
+        }
       },
       tooltip: {
         enabled: true
@@ -38,7 +44,9 @@ export class TaskCompletionChartComponent implements OnInit {
         labels: ['Completed', 'Pending'],
         datasets: [{
           data: [completedTasks, pendingTasks],
-          backgroundColor: ['#4CAF50', '#FFC107']
+          backgroundColor: ['#2b2d42', '#8d99ae'], // Adjusted colors
+          borderColor: '#f8f8f8', // Optional border for better separation
+          borderWidth: 1
         }]
       };
     });

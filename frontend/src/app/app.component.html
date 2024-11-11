@@ -67,7 +67,8 @@
   </div>
 </div>
 
-<div style="text-align:center;">
+<div style="text-align:center;" *ngIf="showPieChart">
+  <br>
   <h2>Task Completion Analytics</h2>
   <app-task-completion-chart></app-task-completion-chart>
 </div>
