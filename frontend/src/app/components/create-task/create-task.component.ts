@@ -16,7 +16,7 @@ task: Task = {
     dueDate: '',
     completed: false,
     category: '',
-    priority:''
+    priority:'Medium'
   }
 
   constructor(private taskService: TaskService, private router: Router){

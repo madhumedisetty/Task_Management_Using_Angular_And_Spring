@@ -12,8 +12,9 @@ export class TaskListComponent implements OnInit{
 
  @Input() tasks : Task[]=[];
  selectedCategory: string = ''; // Selected category for filtering
- searchResults: any[] = [];
  selectedPriority: string = '';
+
+ searchResults: any[] = [];
 
  constructor(private taskService: TaskService, private httpClient: HttpClient){}
 
@@ -24,9 +25,19 @@ ngOnInit(): void {
 getTasks(): void {
   this.taskService.getTasks().subscribe((tasks) => {
     this.tasks = tasks;
+    this.sortTasksByDueDate();
 
   });
 
+}
+sortTasksByDueDate(): void {
+  this.tasks.sort((a, b) => {
+    // If dueDate is missing, assign a large default value to place it at the end
+    const dateA = a.dueDate ? new Date(a.dueDate).getTime() : Number.MAX_VALUE;
+    const dateB = b.dueDate ? new Date(b.dueDate).getTime() : Number.MAX_VALUE;
+
+    return dateA - dateB;
+  });
 }
 
 filterTasks(): void {
@@ -39,18 +50,6 @@ filterTasks(): void {
   }
 }
 
-getPriorityClass(priority: string): string {
-  switch (priority) {
-    case 'High':
-      return 'high-priority';
-    case 'Medium':
-      return 'medium-priority';
-    case 'Low':
-      return 'low-priority';
-    default:
-      return ''; // Handle other cases or no priority
-  }
-}
 
 updateCompletionStatus(task: Task): void {
   // Send an HTTP request to update the completion status on the server.
@@ -68,11 +67,12 @@ updateCompletionStatus(task: Task): void {
 }
 
 
-updatePriorityInTaskList(taskId: number, priority: string): void {
+updatePriorityInTaskList(taskId: number, priority: 'High' | 'Medium' | 'Low'): void {
   const taskToUpdate = this.tasks.find((task) => task.id === taskId);
   if (taskToUpdate) {
     taskToUpdate.priority = priority;
   }
 }
+
 
 }

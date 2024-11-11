@@ -58,21 +58,21 @@ public class TaskController {
 	
 	//update employee restApi
 	@PutMapping("/tasks/{id}")
-	public ResponseEntity<Task> updateTask(@PathVariable Long id,@RequestBody  Task taskDetails){
-		Task task = taskRepo.findById(id)
-				.orElseThrow(()-> new ResourceNotFoundException("Employee not found with this ID: "+id));
-		
-		task.setTitle(taskDetails.getTitle());
-		task.setDescription(taskDetails.getDescription());
-		task.setDueDate(taskDetails.getDueDate());
-	task.setCategory(taskDetails.getCategory());
-	
-	// Update the completion status
-	 task.setCompleted(taskDetails.isCompleted());
-	    
-		Task updateTask = taskRepo.save(task);
-		return new ResponseEntity<Task>(updateTask, HttpStatus.OK);
-	}
+    public ResponseEntity<Task> updateTask(@PathVariable Long id, @RequestBody Task taskDetails) {
+    Task task = taskRepo.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Task not found with this ID: " + id));
+    
+    // Updating fields with values from taskDetails
+    task.setTitle(taskDetails.getTitle());
+    task.setDescription(taskDetails.getDescription());
+    task.setDueDate(taskDetails.getDueDate());
+    task.setCategory(taskDetails.getCategory());
+    task.setPriority(taskDetails.getPriority()); // Ensure priority field is updated
+    task.setCompleted(taskDetails.isCompleted()); // Ensure completion status is updated
+
+    Task updatedTask = taskRepo.save(task);
+    return new ResponseEntity<>(updatedTask, HttpStatus.OK);
+}
 	
 	
 	//delete employee rest API

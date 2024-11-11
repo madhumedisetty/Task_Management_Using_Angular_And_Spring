@@ -5,16 +5,16 @@ export class Task {
   public dueDate: string|null;
   public  completed:  boolean;
   public  category: string;
-  public  priority: string;
+  public  priority: 'High' | 'Medium' | 'Low';
 
   constructor(
     id: number,
     title: string,
     description: string,
-    dueDate: string|null,
+    dueDate: string | null,
     completed: boolean,
-     category: string,
-     priority: string
+    category: string,
+    priority: 'High' | 'Medium' | 'Low' 
   ) {
     this.id = id;
     this.title = title;
