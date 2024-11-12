@@ -1,11 +1,20 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  ViewChild,
+} from '@angular/core';
 import { Task } from '../../models/task';
 import { TaskService } from '../../services/task.service';
+import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
+import { BaseChartDirective } from 'ng2-charts';
 
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.css']
+  styleUrls: ['./task-list.component.css'],
 })
 export class TaskListComponent implements OnInit {
   @Input() tasks: Task[] = [];
@@ -17,6 +26,28 @@ export class TaskListComponent implements OnInit {
   selectedPriority: string = '';
   searchTerm: string = '';
   filteredTasks: Task[] = [];
+
+  @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
+
+  public pieChartOptions: ChartConfiguration['options'] = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'top',
+      },
+    },
+  };
+  public pieChartData: ChartData<'pie', number[], string | string[]> = {
+    labels: ['To Do', 'Completed'],
+    datasets: [
+      {
+        data: [0, 0],
+        backgroundColor: ['#b23b3b', '#3b7952'],
+      },
+    ],
+  };
+  public pieChartType: ChartType = 'pie';
 
   constructor(private taskService: TaskService) {}
 
@@ -32,23 +63,35 @@ export class TaskListComponent implements OnInit {
   }
 
   applyFiltersAndSort(): void {
-    this.filteredTasks = this.tasks.filter(task => {
-      const categoryMatch = !this.selectedCategory || task.category === this.selectedCategory;
-      const priorityMatch = !this.selectedPriority || task.priority === this.selectedPriority;
-      const searchMatch = !this.searchTerm || 
+    // Existing filter logic
+    this.filteredTasks = this.tasks.filter((task) => {
+      const categoryMatch =
+        !this.selectedCategory || task.category === this.selectedCategory;
+      const priorityMatch =
+        !this.selectedPriority || task.priority === this.selectedPriority;
+      const searchMatch =
+        !this.searchTerm ||
         task.title.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
         task.description.toLowerCase().includes(this.searchTerm.toLowerCase());
       return categoryMatch && priorityMatch && searchMatch;
     });
+
     this.sortTasksByDueDate();
     this.tasksFiltered.emit(this.filteredTasks);
     this.tasksUpdated.emit(this.filteredTasks);
+
+    // Update the chart data after filtering
+    this.updatePieChart();
   }
 
   sortTasksByDueDate(): void {
     this.filteredTasks.sort((a, b) => {
-      const dateA = a.dueDate ? new Date(a.dueDate).getTime() : Number.MAX_VALUE;
-      const dateB = b.dueDate ? new Date(b.dueDate).getTime() : Number.MAX_VALUE;
+      const dateA = a.dueDate
+        ? new Date(a.dueDate).getTime()
+        : Number.MAX_VALUE;
+      const dateB = b.dueDate
+        ? new Date(b.dueDate).getTime()
+        : Number.MAX_VALUE;
       return dateA - dateB;
     });
   }
@@ -79,9 +122,13 @@ export class TaskListComponent implements OnInit {
         task.completed = !task.completed;
       }
     );
+    this.updatePieChart();
   }
 
-  updatePriorityInTaskList(taskId: number, priority: 'High' | 'Medium' | 'Low'): void {
+  updatePriorityInTaskList(
+    taskId: number,
+    priority: 'High' | 'Medium' | 'Low'
+  ): void {
     const taskToUpdate = this.tasks.find((task) => task.id === taskId);
     if (taskToUpdate) {
       taskToUpdate.priority = priority;
@@ -92,10 +139,20 @@ export class TaskListComponent implements OnInit {
   deleteTask(taskId: number): void {
     this.taskService.deleteTask(taskId).subscribe(
       () => {
-        this.tasks = this.tasks.filter(task => task.id !== taskId);
+        this.tasks = this.tasks.filter((task) => task.id !== taskId);
         this.applyFiltersAndSort();
       },
       (error) => console.error('Error deleting task:', error)
     );
+  }
+
+  updatePieChart(): void {
+    const completedTasks = this.filteredTasks.filter(
+      (task) => task.completed
+    ).length;
+    const todoTasks = this.filteredTasks.length - completedTasks;
+
+    this.pieChartData.datasets[0].data = [todoTasks, completedTasks];
+    this.chart?.update();
   }
 }
