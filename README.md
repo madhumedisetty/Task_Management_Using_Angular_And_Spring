@@ -32,23 +32,21 @@ Make sure you have the following installed:
 1. Clone the backend repository:
 
    ```bash
-   git clone https://github.com/your-repo/backend.git
+   git clone https://github.com/madhumedisetty/Task_Management_Using_Angular_And_Spring/backend.git
    cd backend
    ```
 
 2. Install dependencies:
 
    ```bash
-   npm install
+   mvn clean install
    ```
 
 3. Configure your database connection in the `server.js` 
 
 4. Start the backend server:
 
-   ```bash
-   npm start
-   ```
+   Run the TaskManagementAppBackendApplication file
 
    The backend should now be running on `http://localhost:8080` (or your configured port).
 
@@ -59,7 +57,7 @@ Make sure you have the following installed:
 1. Clone the frontend repository:
 
    ```bash
-   git clone https://github.com/your-repo/frontend.git
+   git clone https://github.com/madhumedisetty/Task_Management_Using_Angular_And_Spring/frontend.git
    cd frontend
    ```
 
