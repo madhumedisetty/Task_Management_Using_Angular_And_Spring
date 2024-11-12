@@ -21,9 +21,12 @@
   font-style: normal;
   color:#2b2d42;
   padding-top: 22px;
+  position: relative;
+  z-index: 1;
 }
 .task-list-heading {
   text-align: center;
+  margin-top: 30px;
   font-size: 30px;
   color: #434a59;
   margin: 20px 0;

@@ -68,4 +68,17 @@ export class TaskService {
     const url = `${this.baseUrl}/search?query=${encodeURIComponent(searchTerm)}`;
     return this.httpClient.get<Task[]>(url);
   }
+
+  getSearchSuggestions(term: string): Observable<string[]> {
+    return this.getTasks().pipe(
+      map(tasks => tasks
+        .filter(task => 
+          task.title.toLowerCase().includes(term.toLowerCase()) || 
+          task.description.toLowerCase().includes(term.toLowerCase())
+        )
+        .map(task => task.title)
+        .slice(0, 5) // Limit to 5 suggestions
+      )
+    );
+  }
 }
