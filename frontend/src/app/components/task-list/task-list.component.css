@@ -3,13 +3,15 @@
 .container {
   display: flex;
   align-items: flex-start;
-  border-radius: 5px;
-  background-color: #eff6f8;
-  /* box-shadow: 0 4px 6px rgba(199, 235, 240, 0.1); */
+  border-radius: 12px;
+  background: linear-gradient(135deg, #eff6f8, #d8e9f3);
   width: auto;
-  box-shadow: 0 2px 4px rgba(1, 1, 2, 0.1);
+  box-shadow: 0 4px 8px rgba(1, 1, 2, 0.2);
+  transition: all 0.3s ease;
 }
-
+.container:hover {
+  box-shadow: 0 8px 16px rgba(67, 74, 89, 0.3);
+}
 /* Style the heading */
 .container h1 {
   text-align: center;
@@ -22,26 +24,29 @@
 }
 .task-list-heading {
   text-align: center;
-  font-size: 28px;
-  color: #2b2d42;
-  margin-bottom: 20px;
+  font-size: 30px;
+  color: #434a59;
+  margin: 20px 0;
+  font-weight: bold;
 }
 /* Style the list items */
 .list-group-item {
-  padding: 20px;
-  border: 1px solid #eae6e6;
-  border-radius: 5px;
-  margin: 10px 70px;
-  background-color: #ffffff;
-  transition: box-shadow 0.2s;
-  box-shadow: 0 2px 4px rgba(1, 1, 2, 0.1);
+  padding: 16px 20px;
+  margin: 10px 40px;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #ffffff, #e6eef3);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
-
+.list-group-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 12px rgba(67, 74, 89, 0.2);
+}
 /* Style the task title */
 .list-group-item h2 {
   font-size: 50px;
   margin-bottom: 10px;
-  color: #46a8b9;
+  color: #434a59;
   font-style: normal;
 }
 
@@ -67,23 +72,34 @@
 
 
 /* Style the update link */
+
+.update-link,
+.delete-link {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 14px;
+  padding: 5px 8px;
+  border-radius: 5px;
+  transition: all 0.2s ease;
+}
+
+
 .update-link {
-  color: #26849d; /* Icon color */
+  color: #1e9595; /* Icon color */
   text-decoration: none; /* Remove underline */
-  margin-top: 10px;
-  display: inline-block; /* Display the link as a block element */
+  
 }
 
 .update-link:hover {
-  color: #81f1f7; /* Hover effect color */
+  color: #156666; /* Hover effect color */
 }
 
 .delete-link{
-  color: rgb(221, 86, 86);
+  color: #c55050;
 }
 
 .delete-link:hover{
-  color: #ff5e00;
+  color: #823434;
 }
 
 .icon-spacing {
@@ -110,8 +126,13 @@
   margin: 0 auto 20px;
   padding: 20px;
   background-color: #eff6f8;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(1, 1, 2, 0.2);
+  background: linear-gradient(135deg, #eff6f8, #d8e9f3);
+
+}
+.filters-section:hover {
+  box-shadow: 0 8px 16px rgba(67, 74, 89, 0.3);
 }
 
 .search-bar-container {
@@ -126,10 +147,10 @@
 
 .filter-item select {
   padding: 8px 12px;
-  border: 2px solid #2b2d42;
+  border: none;
   border-radius: 6px;
   font-size: 14px;
-  background-color: white;
+  background-color: #eff4f5;
   cursor: pointer;
   min-width: 140px;
   outline: none;
@@ -137,12 +158,17 @@
 }
 
 .filter-item select:focus {
-  border-color: #434a59;
+  /* border-color: #434a59; */
   box-shadow: 0 0 0 2px rgba(67, 74, 89, 0.1);
 }
 
 .filter-item select:hover {
-  border-color: #434a59;
+  box-shadow: 0 0 20px rgba(139, 210, 249, 0.8); 
+  transform: scale(1.02);
+}
+.filter-item select option {
+  background-color: #eff4f5;
+  color: #434a59;
 }
 
 .task-list-heading {
@@ -330,8 +356,8 @@
 }
 
 .tit{
-  color:#3a404e;
-  font-size: 15px;
+  color: #2b2d42;
+  font-size: 14px;
 }
 
 
@@ -347,7 +373,12 @@
   height: 500px;
   margin: 20px auto;
   padding: 20px;
-  background-color: #eff6f8;
+  background: linear-gradient(135deg, #eff6f8, #d8e9f3);
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.pie-chart:hover {
+    box-shadow: 0 0 20px rgba(139, 210, 249, 0.8); 
+    transform: scale(1.02);
+  
 }
