@@ -1,4 +1,3 @@
-// import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Task } from '../../models/task';
 import { TaskService } from '../../services/task.service';
@@ -8,87 +7,95 @@ import { TaskService } from '../../services/task.service';
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css']
 })
-export class TaskListComponent implements OnInit{
+export class TaskListComponent implements OnInit {
+  @Input() tasks: Task[] = [];
+  @Input() selectedCategory: string = '';
+  @Output() tasksUpdated = new EventEmitter<Task[]>();
+  @Output() categoryChanged: EventEmitter<string> = new EventEmitter<string>();
+  @Output() tasksFiltered = new EventEmitter<Task[]>();
 
- @Input() tasks : Task[]=[];
- @Input() selectedCategory: string = ''; // Define selectedCategory as an input property
+  selectedPriority: string = '';
+  searchTerm: string = '';
+  filteredTasks: Task[] = [];
 
- @Output() tasksUpdated = new EventEmitter<Task[]>();
- @Output() categoryChanged: EventEmitter<string> = new EventEmitter<string>();
- @Output() tasksFiltered = new EventEmitter<Task[]>();
-//  selectedCategory: string = ''; // Selected category for filtering
- selectedPriority: string = '';
+  constructor(private taskService: TaskService) {}
 
- searchResults: any[] = [];
-
- constructor(private taskService: TaskService){}
-
-ngOnInit(): void {
-  this.getTasks();
-}
-
-getTasks(): void {
-  this.taskService.getTasks().subscribe((tasks) => {
-    this.tasks = tasks;
-    this.sortTasksByDueDate();
-    console.log('All tasks loaded:', this.tasks); // Debugging log
-    this.tasksUpdated.emit(this.tasks);  // Emit updated task list
-  });
-}
-
-sortTasksByDueDate(): void {
-  this.tasks.sort((a, b) => {
-    // If dueDate is missing, assign a large default value to place it at the end
-    const dateA = a.dueDate ? new Date(a.dueDate).getTime() : Number.MAX_VALUE;
-    const dateB = b.dueDate ? new Date(b.dueDate).getTime() : Number.MAX_VALUE;
-
-    return dateA - dateB;
-  });
-}
-filterTasks(): void {
-  console.log('Filtering tasks with category:', this.selectedCategory, 'and priority:', this.selectedPriority);
-  if (this.selectedCategory === '' && this.selectedPriority === '') {
+  ngOnInit(): void {
     this.getTasks();
-  } else {
-    this.taskService.getFilteredTasks(this.selectedCategory, this.selectedPriority).subscribe((filteredTasks) => {
-      this.tasks = filteredTasks;
-      console.log('Filtered tasks:', this.tasks);
-      this.tasksUpdated.emit(this.tasks);
-      this.tasksFiltered.emit(this.tasks); // Emit filtered tasks
+  }
+
+  getTasks(): void {
+    this.taskService.getTasks().subscribe((tasks) => {
+      this.tasks = tasks;
+      this.applyFiltersAndSort();
     });
   }
-}
 
-onCategoryChange(newCategory: string): void {
-  this.selectedCategory = newCategory;
-  this.categoryChanged.emit(this.selectedCategory);
-  this.filterTasks(); // Call filterTasks when category changes
-}
-
-
-
-updateCompletionStatus(task: Task): void {
-  // Send an HTTP request to update the completion status on the server.
-  this.taskService.updateTaskCompletion(task.id, task.completed).subscribe(
-    (response) => {
-      console.log('Task completion status updated on the server:', response);
-    },
-    (error) => {
-      console.error('Error updating task completion status:', error);
-
-      // If there's an error, revert the local 'completed' property to its previous state.
-      task.completed = !task.completed;
-    }
-  );
-}
-
-
-updatePriorityInTaskList(taskId: number, priority: 'High' | 'Medium' | 'Low'): void {
-  const taskToUpdate = this.tasks.find((task) => task.id === taskId);
-  if (taskToUpdate) {
-    taskToUpdate.priority = priority;
+  applyFiltersAndSort(): void {
+    this.filteredTasks = this.tasks.filter(task => {
+      const categoryMatch = !this.selectedCategory || task.category === this.selectedCategory;
+      const priorityMatch = !this.selectedPriority || task.priority === this.selectedPriority;
+      const searchMatch = !this.searchTerm || 
+        task.title.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        task.description.toLowerCase().includes(this.searchTerm.toLowerCase());
+      return categoryMatch && priorityMatch && searchMatch;
+    });
+    this.sortTasksByDueDate();
+    this.tasksFiltered.emit(this.filteredTasks);
+    this.tasksUpdated.emit(this.filteredTasks);
   }
-}
 
+  sortTasksByDueDate(): void {
+    this.filteredTasks.sort((a, b) => {
+      const dateA = a.dueDate ? new Date(a.dueDate).getTime() : Number.MAX_VALUE;
+      const dateB = b.dueDate ? new Date(b.dueDate).getTime() : Number.MAX_VALUE;
+      return dateA - dateB;
+    });
+  }
 
+  onCategoryChange(newCategory: string): void {
+    this.selectedCategory = newCategory;
+    this.categoryChanged.emit(this.selectedCategory);
+    this.applyFiltersAndSort();
+  }
+
+  onPriorityChange(newPriority: string): void {
+    this.selectedPriority = newPriority;
+    this.applyFiltersAndSort();
+  }
+
+  onSearch(searchTerm: string): void {
+    this.searchTerm = searchTerm;
+    this.applyFiltersAndSort();
+  }
+
+  updateCompletionStatus(task: Task): void {
+    this.taskService.updateTaskCompletion(task.id, task.completed).subscribe(
+      (response) => {
+        console.log('Task completion status updated on the server:', response);
+      },
+      (error) => {
+        console.error('Error updating task completion status:', error);
+        task.completed = !task.completed;
+      }
+    );
+  }
+
+  updatePriorityInTaskList(taskId: number, priority: 'High' | 'Medium' | 'Low'): void {
+    const taskToUpdate = this.tasks.find((task) => task.id === taskId);
+    if (taskToUpdate) {
+      taskToUpdate.priority = priority;
+      this.applyFiltersAndSort();
+    }
+  }
+
+  deleteTask(taskId: number): void {
+    this.taskService.deleteTask(taskId).subscribe(
+      () => {
+        this.tasks = this.tasks.filter(task => task.id !== taskId);
+        this.applyFiltersAndSort();
+      },
+      (error) => console.error('Error deleting task:', error)
+    );
+  }
 }

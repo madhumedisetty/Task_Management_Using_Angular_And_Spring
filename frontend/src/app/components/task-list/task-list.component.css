@@ -17,10 +17,15 @@
   color: #333;
   margin-bottom: 20px;
   font-style: normal;
-  color:#135d73;
+  color:#2b2d42;
   padding-top: 22px;
 }
-
+.task-list-heading {
+  text-align: center;
+  font-size: 28px;
+  color: #2b2d42;
+  margin-bottom: 20px;
+}
 /* Style the list items */
 .list-group-item {
   padding: 20px;
@@ -91,29 +96,63 @@
   margin-right: 3%;
 }
 .category label{
-  color: #135d73;
+  color: #2b2d42;
   font-weight: bold;
 }
 
 
-/* filtering*/
+/* filtering */
+.filters-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto 20px;
+  padding: 20px;
+  background-color: #eff6f8;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar-container {
+  flex-grow: 1;
+  margin-right: 20px;
+}
+
 .filters {
   display: flex;
-  justify-content: flex-end;
-  gap: 20px; /* Space between the dropdowns */
-  margin-right: 3%;
+  gap: 15px;
 }
 
-.category,
-.priority {
-  padding: 5px;
+.filter-item select {
+  padding: 8px 12px;
+  border: 2px solid #2b2d42;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: white;
+  cursor: pointer;
+  min-width: 140px;
+  outline: none;
+  transition: all 0.2s ease;
 }
 
-.category label,
-.priority label {
-  color: #135d73;
-  font-weight: bold;
+.filter-item select:focus {
+  border-color: #434a59;
+  box-shadow: 0 0 0 2px rgba(67, 74, 89, 0.1);
 }
+
+.filter-item select:hover {
+  border-color: #434a59;
+}
+
+.task-list-heading {
+  text-align: center;
+  font-size: 28px;
+  color: #2b2d42;
+  margin-bottom: 20px;
+}
+
+/* Keep the rest of your existing styles */
 
 /* Apply common styles for both dropdowns */
 .category select,
