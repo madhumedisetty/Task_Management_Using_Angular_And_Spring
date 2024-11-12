@@ -1,11 +1,18 @@
-<div class="search-bar">
-  <input
-    type="text"
-    placeholder="Search Tasks"
-    [(ngModel)]="searchTerm"
-    (input)="onInputChange()"
-  />
-  <button (click)="onInputChange()">
-    <i class="fa fa-search"></i>
-  </button>
+<div class="search-bar-container">
+  <div class="search-bar">
+    <input
+      type="text"
+      placeholder="Search Tasks"
+      [(ngModel)]="searchTerm"
+      (input)="onInputChange()"
+    />
+    <button (click)="onInputChange()">
+      <i class="fa fa-search"></i>
+    </button>
+  </div>
+  <ul *ngIf="suggestions.length > 0" class="suggestions">
+    <li *ngFor="let suggestion of suggestions" (click)="selectSuggestion(suggestion)">
+      <span [innerHTML]="highlightMatch(suggestion, searchTerm)"></span>
+    </li>
+  </ul>
 </div>

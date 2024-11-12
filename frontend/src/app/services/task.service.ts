@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Task } from '../models/task';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -66,5 +67,18 @@ export class TaskService {
    searchTasksByTerm(searchTerm: string): Observable<Task[]> {
     const url = `${this.baseUrl}/search?query=${encodeURIComponent(searchTerm)}`;
     return this.httpClient.get<Task[]>(url);
+  }
+
+  getSearchSuggestions(term: string): Observable<string[]> {
+    return this.getTasks().pipe(
+      map(tasks => tasks
+        .filter(task => 
+          task.title.toLowerCase().includes(term.toLowerCase()) || 
+          task.description.toLowerCase().includes(term.toLowerCase())
+        )
+        .map(task => task.title)
+        .slice(0, 5) // Limit to 5 suggestions
+      )
+    );
   }
 }
