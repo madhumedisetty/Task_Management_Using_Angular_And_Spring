@@ -32,15 +32,26 @@
       <p class="mb-1"><strong class="tit">Title:</strong> {{task.title}}</p>
       <p class="mb-1"><strong class="tit">Description: </strong>{{ task.description }}</p>
       <p class="mb-1"><strong class="tit">Due Date: </strong>{{ task.dueDate | date:'medium' }}</p>
-      <p class="mb-1"><strong class="tit">Category: </strong>{{ task.category }}</p>
+      <p class="mb-1" style="white-space: nowrap;"><strong class="tit">Category: </strong>{{ task.category }}</p>
 
       <div class="priority-container">
-        <i *ngIf="task.priority === 'High'" class="material-icons high-priority-icon red-text">fiber_manual_record</i>
-        <i *ngIf="task.priority === 'Medium'" class="material-icons medium-priority-icon orange-text">fiber_manual_record</i>
-        <i *ngIf="task.priority === 'Low'" class="material-icons low-priority-icon green-text">fiber_manual_record</i>
-        <p [ngClass]="{'high-priority': task.priority === 'High', 'medium-priority': task.priority === 'Medium', 'low-priority': task.priority === 'Low'}">
-          <strong class="tit">Priority:</strong> {{ task.priority }}
+        
+        <p>
+          <strong class="tit">Priority:</strong> 
         </p>
+        <div style="padding-top: 0.5rem;margin-left: 5px;">
+          <i *ngIf="task.priority === 'High'" class="material-icons high-priority-icon red-text">fiber_manual_record</i>
+          <i *ngIf="task.priority === 'Medium'" class="material-icons medium-priority-icon orange-text">fiber_manual_record</i>
+          <i *ngIf="task.priority === 'Low'" class="material-icons low-priority-icon green-text">fiber_manual_record</i>
+        </div>
+        <p *ngIf="task.priority === 'High'" class="high-priority" style="color: red;">{{ task.priority }}</p>
+        <p *ngIf="task.priority === 'Medium'" class="medium-priority" style="color: orange;">{{ task.priority }}</p>
+        <p *ngIf="task.priority === 'Low'" class="low-priority" style="color: green;">{{ task.priority }}</p>
+        <!-- <p [class.high-priority]="task.priority === 'High'" [class.medium-priority]="task.priority === 'Medium'"
+          [class.low-priority]="task.priority === 'Low'">
+          {{ task.priority }}
+        </p> -->
+
       </div>
 
       <div class="task-actions">
