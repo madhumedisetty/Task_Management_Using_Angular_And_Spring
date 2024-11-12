@@ -55,7 +55,7 @@
 
 /* Style the task description */
 .list-group-item p {
-  font-size: 20px;
+  font-size: 16px;
   margin: 5px 0;
   color: #51a9b9;
 }
@@ -71,6 +71,7 @@
 .list-group-item:hover {
   box-shadow: 0 0 20px rgba(139, 210, 249, 0.8); 
   transform: scale(1.02);
+  
 }
 
 
@@ -78,12 +79,15 @@
 
 .update-link,
 .delete-link {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   margin-top: 8px;
   font-size: 14px;
   padding: 5px 8px;
   border-radius: 5px;
   transition: all 0.2s ease;
+  cursor: pointer;
 }
 
 
@@ -230,7 +234,9 @@
   border-radius: 2px;
   padding: 5px;
 }
-
+.task-actions{
+  display: flex;
+}
 /* Low Priority */
 .low-priority {
   /* background-color: #99ff99;  */
@@ -247,7 +253,7 @@
   border-radius: 4px;
   padding: 16px;
   margin-bottom: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px rgba(162, 110, 110, 0.2);
   font:bold;
   margin-left: 50px;
   margin-top: 80px;
@@ -305,7 +311,9 @@
 /* /* Icon Styles for High Priority */
 .high-priority-icon {
   color: red; /* Choose a color for high priority */
-  font-size: 24px; /* Adjust the size as needed */
+  font-size: 20px; /* Adjust the size as needed */
+  /* padding-top: 1rem; */
+  /* align-self: center; */
 }
 
 /* Icon Styles for Medium Priority */
@@ -322,6 +330,8 @@
 
 .priority-container {
   display: flex;
+  flex-direction: row;
+  white-space: nowrap;
   align-items: center;
 }
 
