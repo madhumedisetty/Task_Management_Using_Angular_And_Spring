@@ -7,7 +7,7 @@ This is a Task Management Application that allows users to manage their tasks wi
 - **Task Creation**: Add tasks with titles, descriptions, categories, priorities, due dates, and completion statuses.
 - **Task List**: View a list of tasks with detailed information (title, description, due date, priority).
 - **Filter Tasks**: Filter tasks by category (Personal, Work, Shopping) and priority (High, Medium, Low).
-- **Sorting Tasks**: Sort tasks based on priority (High, Medium, Low) or due date (earliest to latest).
+- **Sorting Tasks**: Sort tasks based on due date (earliest to latest).
 - **Update Tasks**: Edit task details, including title, description, due date, category, and priority.
 - **Mark Completion**: Mark tasks as completed with a checkbox. Completion status is updated in real-time.
 - **Delete Tasks**: Delete tasks from the list.
