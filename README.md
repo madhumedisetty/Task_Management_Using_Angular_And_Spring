@@ -17,79 +17,82 @@ This is a Task Management Application that allows users to manage their tasks wi
 
 ## Prerequisites
 
-Make sure you have the following installed:
-
-- Node.js (for both frontend and backend)
-- Angular CLI (for frontend)
-- A database (MongoDB, MySQL, etc.)
-
+- **Backend**: Java 17+, Spring Boot 3.0+, and a database (e.g., MySQL).
+- **Frontend**: Node.js, Angular CLI.
+  
 ---
 
 ## Running the Project
 
 ### Backend Setup
 
-1. Clone the backend repository:
-
+1. **Clone the backend repository**:
    ```bash
    git clone https://github.com/madhumedisetty/Task_Management_Using_Angular_And_Spring/backend.git
    cd backend
    ```
 
-2. Install dependencies:
-
+2. **Install dependencies**:
    ```bash
    mvn clean install
    ```
 
-3. Configure your database connection in the `server.js` 
+3. **Configure database settings** in `application.properties`.
 
-4. Start the backend server:
+4. **Start the backend server**:
+   Run the `TaskManagementAppBackendApplication` file.
 
-   Run the TaskManagementAppBackendApplication file
-
-   The backend should now be running on `http://localhost:8080` (or your configured port).
+   The backend will run on `http://localhost:8080` (or a configured port).
 
 ---
 
 ### Frontend Setup
 
-1. Clone the frontend repository:
-
+1. **Clone the frontend repository**:
    ```bash
    git clone https://github.com/madhumedisetty/Task_Management_Using_Angular_And_Spring/frontend.git
    cd frontend
    ```
 
-2. Install dependencies:
-
+2. **Install dependencies**:
    ```bash
    npm install
    ```
 
-3. Configure API URL (the backend server URL) in the `task.service.ts` file.
+3. **Configure API URL** in `task.service.ts` to point to the backend server.
 
-4. Start the frontend server:
-
+4. **Start the frontend server**:
    ```bash
    ng serve
    ```
 
-   The frontend should now be running on `http://localhost:4200`.
+   The frontend will be accessible at `http://localhost:4200`.
 
 ---
 
-## Testing
+## API Endpoints
 
-You can test the API using Postman or any other API client.
+| HTTP Method | Endpoint                      | Description                                                  |
+|-------------|-------------------------------|--------------------------------------------------------------|
+| **GET**     | `/api/v1/tasks`               | Retrieve all tasks.                                          |
+| **POST**    | `/api/v1/tasks`               | Create a new task.                                           |
+| **GET**     | `/api/v1/tasks/{id}`          | Retrieve a task by ID.                                       |
+| **PUT**     | `/api/v1/tasks/{id}`          | Update a task by ID.                                         |
+| **DELETE**  | `/api/v1/tasks/{id}`          | Delete a task by ID.                                         |
+| **GET**     | `/api/v1/tasks/filter`        | Filter tasks by category, priority, or both.                 |
+| **PUT**     | `/api/v1/tasks/{id}/completed`| Mark a task as completed.                                    |
+| **GET**     | `/api/v1/tasks/search`        | Search tasks by title (case-insensitive).                    |
 
-### API Endpoints:
+---
 
-- **GET `/tasks`**: Retrieve a list of all tasks.
-- **GET `/tasks/:id`**: Retrieve a single task by its ID.
-- **POST `/tasks`**: Create a new task.
-- **PUT `/tasks/:id`**: Update an existing task by ID.
-- **DELETE `/tasks/:id`**: Delete a task by ID.
+## Frontend Project Structure
+
+1. **Components**: Task list, task creation, task update, and task details components.
+2. **Services**: `TaskService` for handling HTTP requests.
+3. **Data Flow**:
+   - **Components** interact with `TaskService` to fetch and manipulate data.
+   - **Service** communicates with backend API to retrieve/update data.
+   - **Backend** processes requests and returns the data to display.
 
 ---
 
