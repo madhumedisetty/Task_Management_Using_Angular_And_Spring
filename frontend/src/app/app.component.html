@@ -13,7 +13,7 @@
   </div>
 
   <!-- Include the search bar here -->
-  <app-search-bar (searchEmitter)="searchTasks($event)"></app-search-bar>
+  <!-- <app-search-bar (searchEmitter)="searchTasks($event)"></app-search-bar> -->
   
 </nav>
 
@@ -50,14 +50,7 @@
 
     <!-- Main content area -->
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <!-- Page content goes here -->
-      <!-- Show search results only when showSearchResults is true -->
-      <app-task-list 
-  [tasks]="filteredTasks" 
-  [selectedCategory]="selectedCategory" 
-  (categoryChanged)="updateCategory($event)"
-  (tasksFiltered)="filteredTasks = $event">
-</app-task-list>
+      
       
       <div class="container" style="padding-top: 20px">
         <router-outlet></router-outlet>
@@ -72,8 +65,3 @@
   </div>
 </div>
 
-<div style="text-align:center;" *ngIf="showPieChart">
-  <br>
-  <h2>Task Completion Analytics</h2>
-  <app-task-completion-chart [tasks]="filteredTasks"></app-task-completion-chart>
-</div>
