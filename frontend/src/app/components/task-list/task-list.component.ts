@@ -10,6 +10,7 @@ import { Task } from '../../models/task';
 import { TaskService } from '../../services/task.service';
 import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-task-list',
@@ -49,7 +50,7 @@ export class TaskListComponent implements OnInit {
   };
   public pieChartType: ChartType = 'pie';
 
-  constructor(private taskService: TaskService) {}
+  constructor(private taskService: TaskService, private router: Router) {}
 
   ngOnInit(): void {
     this.getTasks();
@@ -136,15 +137,9 @@ export class TaskListComponent implements OnInit {
     }
   }
 
-  deleteTask(taskId: number): void {
-    this.taskService.deleteTask(taskId).subscribe(
-      () => {
-        this.tasks = this.tasks.filter((task) => task.id !== taskId);
-        this.applyFiltersAndSort();
-      },
-      (error) => console.error('Error deleting task:', error)
-    );
-  }
+  navigateToDeleteTask(taskId: number): void {
+      this.router.navigate(['/delete-task', taskId]);
+    }
 
   updatePieChart(): void {
     const completedTasks = this.filteredTasks.filter(

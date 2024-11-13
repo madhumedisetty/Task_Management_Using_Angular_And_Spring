@@ -248,12 +248,11 @@
 
 /* Styling for Completed Task List */
 .completed-task-list {
-  background-color: #ffffff;
-  /* border: 2px solid #2ecc71; */
-  border-radius: 4px;
   padding: 16px;
   margin-bottom: 20px;
-  box-shadow: 0 0 10px rgba(162, 110, 110, 0.2);
+  border-radius: 8px;
+  background: linear-gradient(145deg, #ffffff, #e6eef3);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   font:bold;
   margin-left: 50px;
   margin-top: 80px;
@@ -277,7 +276,7 @@
 .task-list {
   list-style: none;
   padding: 0;
-  color: rgb(17, 114, 29);
+  color: #2b2d42;
 }
 
 .task-list:hover{

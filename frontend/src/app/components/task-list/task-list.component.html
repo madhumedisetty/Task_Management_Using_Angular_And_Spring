@@ -47,23 +47,16 @@
         <p *ngIf="task.priority === 'High'" class="high-priority" style="color: red;">{{ task.priority }}</p>
         <p *ngIf="task.priority === 'Medium'" class="medium-priority" style="color: orange;">{{ task.priority }}</p>
         <p *ngIf="task.priority === 'Low'" class="low-priority" style="color: green;">{{ task.priority }}</p>
-        <!-- <p [class.high-priority]="task.priority === 'High'" [class.medium-priority]="task.priority === 'Medium'"
-          [class.low-priority]="task.priority === 'Low'">
-          {{ task.priority }}
-        </p> -->
+        
 
       </div>
 
       <div class="task-actions">
-        <!-- <label>
-          <input type="checkbox" [(ngModel)]="task.completed" (change)="updateCompletionStatus(task)">
-          Completed
-        </label> -->
         <a [routerLink]="['/update-task', task.id]" class="update-link">
           <i class="fas fa-pencil-alt"></i> Edit
         </a>
         <span class="icon-spacing"></span>
-        <a (click)="deleteTask(task.id)" class="delete-link">
+        <a (click)="navigateToDeleteTask(task.id)" class="delete-link">
           <i class="fas fa-trash-alt"></i> Delete
         </a>
       </div>

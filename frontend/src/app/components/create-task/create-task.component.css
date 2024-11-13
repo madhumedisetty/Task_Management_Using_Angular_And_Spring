@@ -3,15 +3,15 @@
   margin: 0 auto;
   padding: 30px;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(1, 1, 2, 0.1);
-  background-color: #eff6f8;
+  box-shadow: 0 4px 8px rgba(1, 1, 2, 0.2);
+  background: linear-gradient(135deg, #eff6f8, #d8e9f3);
  
 }
 
 .create-task h2 {
   font-size: 24px;
   text-align: center;
-  color: #26849d;
+  color: #2b2d42;
   margin-bottom: 10px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
@@ -27,7 +27,7 @@
   /* display: block; */
   font-weight: bold;
   margin-bottom: 5px;
-  color: #26849d;
+  color: #2b2d42;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .create-task label:hover{
@@ -44,6 +44,23 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.create-task date:hover {
+  box-shadow: 0 0 20px rgba(139, 210, 249, 0.8);
+  transform: scale(1.02);
+}
+.create-task text:hover {
+  box-shadow: 0 0 20px rgba(139, 210, 249, 0.8);
+  transform: scale(1.02);
+}
+.create-task textarea:hover {
+  box-shadow: 0 0 20px rgba(139, 210, 249, 0.8);
+  transform: scale(1.02);
+}
+.inputs:hover {
+  box-shadow: 0 0 20px rgba(139, 210, 249, 0.8);
+  transform: scale(1.02);
+  
+}
 .create-task button {
   width: 25%;
   padding: 10px;
