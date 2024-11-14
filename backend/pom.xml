@@ -78,6 +78,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 					<configuration>
 					<mainClass>com.example.backend.TaskManagementAppBackendApplication</mainClass>
+					
 				</configuration>
 			</plugin>
 		</plugins>
