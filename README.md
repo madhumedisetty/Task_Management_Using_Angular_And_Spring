@@ -80,7 +80,8 @@ This is a Task Management Application that allows users to manage their tasks wi
 
 ## Recording
 
-https://github.com/user-attachments/assets/f6d38272-ea74-45ef-b5c3-57417a0d29a2
+https://github.com/user-attachments/assets/1ca5b695-ee5d-4f64-9836-b0bc75c2b8b4
+
 
 
 
